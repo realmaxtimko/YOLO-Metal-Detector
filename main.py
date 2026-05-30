@@ -16,18 +16,16 @@ class YoloApp:
         self.camera_running = False
         self.cap = None
 
-        # ==================== МОДЕЛЬ ====================
         try:
             self.model = YOLO("best.pt")
         except Exception as e:
             messagebox.showerror(
                 "Помилка",
-                f"Не вдалося завантажити модель best6.pt\n\n{e}"
+                f"Не вдалося завантажити модель best.pt\n\n{e}"
             )
             self.root.destroy()
             return
 
-        # ==================== HEADER ====================
         header = tk.Frame(root, bg="#111111", height=80)
         header.pack(fill="x")
 
@@ -40,7 +38,7 @@ class YoloApp:
         )
         title.pack(pady=20)
 
-        # ==================== CONTROL PANEL ====================
+
         control_frame = tk.Frame(root, bg="#1e1e1e")
         control_frame.pack(pady=15)
 
@@ -86,8 +84,6 @@ class YoloApp:
         )
         self.btn_detect.grid(row=0, column=2, padx=10)
 
-
-        # ==================== IMAGE AREA ====================
         image_frame = tk.Frame(
             root,
             bg="#2d2d2d",
@@ -105,7 +101,6 @@ class YoloApp:
         )
         self.lbl_image.pack(expand=True)
 
-    # ==================== LOAD IMAGE ====================
     def load_image(self):
         file_path = filedialog.askopenfilename(
             filetypes=[("Images", "*.png *.jpg *.jpeg *.bmp *.webp")]
@@ -121,7 +116,6 @@ class YoloApp:
             self.cv_image = image
             self.display_image(self.cv_image)
 
-    # ==================== DETECTION ====================
     def run_detection(self):
         if self.cv_image is None:
             messagebox.showwarning(
@@ -139,7 +133,7 @@ class YoloApp:
             result_img = r.plot()
             self.display_image(result_img)
 
-    # ==================== CAMERA ====================
+    
     def toggle_camera(self):
 
         if not self.camera_running:
@@ -186,7 +180,7 @@ class YoloApp:
 
                 self.display_image(frame)
 
-    # ==================== DISPLAY IMAGE ====================
+    
     def display_image(self, cv_img):
 
         rgb_image = cv2.cvtColor(cv_img, cv2.COLOR_BGR2RGB)
@@ -205,7 +199,6 @@ class YoloApp:
         self.lbl_image.configure(image=imgtk, text="")
 
 
-# ==================== START APP ====================
 if __name__ == "__main__":
 
     root = tk.Tk()
