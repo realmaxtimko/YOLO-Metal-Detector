@@ -51,11 +51,11 @@ project/
 ## 1. Клонування репозиторію
 
 ```bash
-git clone https://github.com/USERNAME/REPOSITORY.git
+git clone https://github.com/realmaxtimko/YOLO-Metal-Detector.git                           )
 ```
 
 ```bash
-cd REPOSITORY
+cd YOLO-Metal-Detector
 ```
 
 ---
